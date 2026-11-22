@@ -17,10 +17,10 @@ Prerequisites: Node 22+, pi 1.6+, terminal-browser installed and a terminal that
 supports its pane integration (including Rex).
 
 ```sh
-npm install
-npm run build
-pi install /absolute/path/to/pi-a2ui
+pi install npm:@npm-ken/pi-a2ui
 ```
+
+The npm package includes the built viewer; no build step is needed.
 
 Restart pi or use `/reload`. Alternatively:
 `pi -e /absolute/path/to/pi-a2ui/index.ts`.
@@ -80,12 +80,33 @@ requires upstream SDK support; do not force an incompatible override.
 ## Development
 
 ```sh
+npm ci
 npm run build
+pi install /absolute/path/to/pi-a2ui
 npm run check
 npm test
 node scripts/preview.mjs
 ```
 
 Preview prints a local viewer URL and logs interactions; Ctrl-C stops it.
-The browser bundle is committed for local extension loading; rebuild after
+The browser bundle is generated in `dist/` (not committed); rebuild after
 changing client code. It includes upstream license notices.
+
+## Publishing
+
+Licensed under the [MIT License](LICENSE). Bundled dependencies retain their
+upstream license notices.
+
+From a clean checkout with Node 22+:
+
+```sh
+npm ci
+npm publish --dry-run
+# Inspect the package contents, then publish when ready:
+npm publish
+```
+
+Publishing runs type checks and tests; packing builds the viewer. Only the
+extension entry point, server, HTML, bundled client, LICENSE and npm metadata/README
+are shipped. Build tools are development-only. The scoped package publishes
+with public access; authenticate to npm with permission for `@npm-ken` first.

@@ -4,7 +4,10 @@
   "type": "module",
   "description": "Live A2UI graphics beside pi in terminal-browser",
   "keywords": [
-    "pi-package"
+    "pi-package",
+    "a2ui",
+    "pi-extension",
+    "terminal-browser"
   ],
   "pi": {
     "extensions": [
@@ -12,11 +15,13 @@
     ]
   },
   "scripts": {
+    "pretest": "npm run build",
     "test": "node --test test/*.test.mjs",
     "check": "tsc --noEmit",
     "build": "node scripts/build.mjs",
     "prepack": "npm run build",
-    "preview": "node scripts/preview.mjs"
+    "preview": "node scripts/preview.mjs",
+    "prepublishOnly": "npm run check && npm test"
   },
   "peerDependencies": {
     "@earendil-works/pi-ai": ">=1.6.0",
@@ -26,14 +31,35 @@
     "@earendil-works/pi-ai": "1.6.0",
     "@earendil-works/pi-coding-agent": "1.6.0",
     "@types/node": "^22.0.0",
-    "typescript": "^5.9.0"
+    "typescript": "^5.9.0",
+    "esbuild": "^0.28.2"
   },
   "dependencies": {
     "@a2ui/agent": "^0.1.0",
     "@a2ui/lit": "^0.15.0",
     "@a2ui/web_core": "^0.15.0",
-    "esbuild": "^0.28.2",
     "lit": "^3.3.3",
     "typebox": "^1.3.27"
-  }
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kenbanks-peng/pi-a2ui.git"
+  },
+  "homepage": "https://github.com/kenbanks-peng/pi-a2ui#readme",
+  "bugs": {
+    "url": "https://github.com/kenbanks-peng/pi-a2ui/issues"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "index.ts",
+    "src/server.mjs",
+    "src/view.html",
+    "dist/client.js"
+  ]
 }
