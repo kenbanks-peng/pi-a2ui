@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en" class="a2ui-dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>pi · A2UI</title>
+<style>
+/* Catppuccin Mocha. Host-owned tokens style every basic-catalog surface. */
+:root {
+  color-scheme: dark;
+  font: 15px/1.5 ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mocha-base: #1e1e2e;
+  --mocha-mantle: #181825;
+  --mocha-crust: #11111b;
+  --mocha-surface0: #313244;
+  --mocha-surface1: #45475a;
+  --mocha-surface2: #585b70;
+  --mocha-text: #cdd6f4;
+  --mocha-subtext: #bac2de;
+  --mocha-overlay: #a6adc8;
+  --mocha-mauve: #cba6f7;
+  --mocha-lavender: #b4befe;
+  --mocha-red: #f38ba8;
+  --mocha-green: #a6e3a1;
+}
+body {
+  margin: 0;
+  background: var(--mocha-mantle);
+  color: var(--mocha-text);
+}
+/* Set tokens on surfaces, below the renderer's root defaults in the cascade. */
+a2ui-surface {
+  display: block;
+  min-width: 0;
+  padding: clamp(16px, 4vw, 28px);
+  background: var(--mocha-base);
+  border: 1px solid var(--mocha-surface0);
+  border-radius: 16px;
+  --a2ui-color-background: var(--mocha-base);
+  --a2ui-color-on-background: var(--mocha-text);
+  --a2ui-color-surface: var(--mocha-mantle);
+  --a2ui-color-on-surface: var(--mocha-text);
+  --a2ui-color-primary: var(--mocha-mauve);
+  --a2ui-color-primary-light: #dfc5fa;
+  --a2ui-color-primary-dark: #b4befe;
+  --a2ui-color-primary-hover: #dfc5fa;
+  --a2ui-color-on-primary: var(--mocha-crust);
+  --a2ui-color-secondary: var(--mocha-surface0);
+  --a2ui-color-secondary-hover: var(--mocha-surface1);
+  --a2ui-color-on-secondary: var(--mocha-text);
+  --a2ui-color-input: var(--mocha-mantle);
+  --a2ui-color-on-input: var(--mocha-text);
+  --a2ui-color-border: var(--mocha-surface1);
+  --a2ui-border: 1px solid var(--mocha-surface1);
+  --a2ui-border-radius: 10px;
+  --a2ui-grid-base: 8px;
+  --a2ui-spacing-xs: 4px;
+  --a2ui-spacing-s: 8px;
+  --a2ui-spacing-m: 12px;
+  --a2ui-spacing-l: 20px;
+  --a2ui-spacing-xl: 32px;
+  --a2ui-font-size: 15px;
+  --a2ui-font-scale: 1.2;
+  --a2ui-line-height-body: 1.55;
+  --a2ui-label-font-size: 13px;
+  --a2ui-label-font-weight: 600;
+  --a2ui-text-caption-color: var(--mocha-overlay);
+  --a2ui-column-gap: 20px;
+  --a2ui-row-gap: 16px;
+  --a2ui-button-margin: 0;
+  --a2ui-button-padding: 10px 18px;
+  --a2ui-button-border-radius: 10px;
+  --a2ui-button-font-weight: 600;
+  --a2ui-textfield-padding: 11px 12px;
+  --a2ui-textfield-border-radius: 10px;
+  --a2ui-textfield-color-error: var(--mocha-red);
+  --a2ui-slider-color-error: var(--mocha-red);
+  --a2ui-checkbox-color-error: var(--mocha-red);
+  --a2ui-datetimeinput-color-error: var(--mocha-red);
+  --a2ui-choicepicker-color-error: var(--mocha-red);
+  --a2ui-slider-margin: 0;
+  --a2ui-choicepicker-gap: 8px;
+  --a2ui-choicepicker-chip-padding: 8px 14px;
+  --a2ui-tabs-header-color: var(--mocha-subtext);
+  --a2ui-tabs-header-color-active: var(--mocha-mauve);
+  --a2ui-tabs-header-background-active: var(--mocha-surface0);
+  --a2ui-tabs-content-padding: 24px 0 4px;
+}
+*, *::before, *::after { box-sizing: border-box; }
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--mocha-surface0);
+  background: var(--mocha-crust);
+}
+header b { font-size: 14px; letter-spacing: .04em; }
+header small { color: var(--mocha-overlay); font-size: 12px; }
+main {
+  max-width: 960px;
+  margin: auto;
+  padding: clamp(12px, 3vw, 28px);
+  display: grid;
+  gap: 24px;
+}
+#app :is(button, input, textarea, select) { font: inherit; accent-color: var(--a2ui-color-primary); }
+#app :is(button, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]), select) { min-height: 44px; }
+#app textarea { min-height: 112px; resize: vertical; }
+#app :is(input, textarea)::placeholder { color: var(--mocha-overlay); opacity: 1; }
+#app :is(button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 2px solid var(--mocha-lavender);
+  outline-offset: 3px;
+}
+#app button { cursor: pointer; }
+#app :is(button, input, textarea, select):disabled { cursor: not-allowed; opacity: .5; }
+#app .a2ui-error-message { color: var(--mocha-red); }
+#app .a2ui-tab-bar { overflow-x: auto; }
+#app .a2ui-tab-bar button { white-space: nowrap; border-radius: 8px 8px 0 0; }
+#app :is(img, video) { max-width: 100%; }
+#app a2ui-basic-row { min-width: 0; }
+#app a2ui-basic-row > * { min-width: 0; }
+#app dialog { max-width: min(640px, calc(100vw - 32px)); color: var(--mocha-text); }
+#app dialog::backdrop { background: #11111bcc; }
+@media (max-width: 480px) {
+  header { padding: 12px 16px; }
+  #app a2ui-basic-row { flex-wrap: wrap; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #app *, #app *::before, #app *::after { transition: none !important; animation: none !important; }
+}
+</style>
+</head>
+<body>
+<header><b>pi · A2UI</b><small id="status" role="status" aria-live="polite">Connecting…</small></header>
+<main id="app"></main>
+<script type="module" src="/client.js?token=TOKEN"></script>
+</body>
+</html>
